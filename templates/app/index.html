@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+{% load staticfiles %}
+<html lang="ru">
+<head>
+
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="{% static 'css/bootstrap.min.css' %}">
+    <link rel="stylesheet" href="{% static 'css/style.css' %}">
+    <title>Цены на лекарства</title>
+</head>
+<body>
+{% block content %}
+    <div class="container">
+        <div class="row">
+            <div class="col">
+                <div class="page-header">
+                    <h1>Поиск максимальной цены</h1>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col">
+                <form class="col-lg-8" action="/" method="get">
+                    <!--
+                    <div class="form-group">
+                        <label class="col-form-label-lg" for="region">Выберите Ваш регион <span class="required-field">*</span></label>
+                        <select name="region" class="form-control form-control-lg" id="region" required>
+                            <option>Москва</option>
+                            <option>Московская область</option>
+                            <option>3</option>
+                            <option>4</option>
+                            <option>5</option>
+                        </select>
+                    </div>
+                    -->
+                    <div class="form-group">
+                        <label class="col-form-label-lg" for="ean13">Введите штрихкод лекарства <span class="required-field">*</span></label>
+                        <input type="text" name="ean13" class="form-control form-control-lg" id="ean13" pattern="[0-9]{13}" maxlength="13" minlength="13"  placeholder="1234567890123" required>
+                    </div>
+                    <!--
+                    <div class="form-group">
+                        <label class="col-form-label-lg" for="nameOfMedicament">Введите название лекарства</label>
+                        <input type="text" name="name" class="form-control form-control-lg" id="nameOfMedicament" placeholder="Зитролид">
+                    </div>
+                    -->
+                    <!--
+                    <div class="form-group">
+                        <label class="col-form-label-lg" for="dateOfManufacture">Введите дату производства <span class="required-field">*</span></label>
+                        <input type="date" name="date" class="form-control form-control-lg" id="dateOfManufacture" max="2020-07-12" required>
+                    </div>
+                    -->
+                    <div class="form-group">
+                        <button type="submit" class="btn btn-primary btn-lg btn-block">Смотреть</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col">
+                <div class="alert alert-primary col-lg-8 result" role="alert">
+                    <h4 class="alert-heading">Максимальная цена на лекарство "Название" может быть: </h4>
+                    <p class="price">price</p>
+
+                    <ul>
+  {% for object in object_list %}
+
+           <li>
+          {{ object.torgName }},  {{ object.dateReg }},  {{ object.cena_apt }}<hr>
+           </li>
+
+  {% endfor %}
+</ul>
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock %}
+</body>
+</html>

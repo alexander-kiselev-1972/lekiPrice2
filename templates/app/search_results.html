@@ -1,0 +1,32 @@
+
+<!DOCTYPE html>
+<html lang="en" xmlns="http://www.w3.org/1999/html">
+<head>
+    <meta charset="UTF-8">
+    <title>{% block title %}{% endblock %}</title>
+</head>
+<body>
+{% block content %}
+
+<div id="content">
+<h1>Результат поиска</h1>
+
+<ul>
+  {% for object in object_list %}
+
+           <li>
+          {{ object.torgName }},  {{ object.dateReg }},  {{ object.cena_apt }}<hr>
+           </li>
+
+  {% endfor %}
+</ul>
+
+<a href="/">Вернуться к поиску</a>
+</div>
+<div id="sidebar">
+<h2>Московский регион</h2>
+</div>
+{% endblock %}
+
+</body>
+</html>

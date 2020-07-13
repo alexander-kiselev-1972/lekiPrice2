@@ -1,0 +1,26 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>{% block title %}
+
+    {% endblock %}</title>
+    <link href="{% static 'css/reports.css' %}" rel="stylesheet">
+</head>
+<body>
+<div id="content">
+<h2>Поиск зарегистрированной цены на ЖНВЛС</h2>
+<form class="form-row" action="{% url 'search_results' %}" method="get">
+  <input  name="query" type="text" placeholder="Наименование или штрих код" size="40">
+    <button type="submit">Послать</button>
+</form>
+
+</div>
+<div id="sidebar">
+    <h2>Московский регион</h2>
+
+</div>
+</body>
+</html>
