@@ -58,20 +58,35 @@
         </div>
         <div class="row">
             <div class="col">
-                <div class="alert alert-primary col-lg-8 result" role="alert">
-                    <h4 class="alert-heading">Максимальная цена на лекарство "Название" может быть: </h4>
-                    <p class="price">price</p>
-
-                    <ul>
-  {% for object in object_list %}
-
-           <li>
-          {{ object.torgName }},  {{ object.dateReg }},  {{ object.cena_apt }}<hr>
-           </li>
-
-  {% endfor %}
-</ul>
-                </div>
+            {% if isRequest %}
+                {% if object_list %}
+                    <div class="alert alert-primary col-lg-8 result" role="alert">
+                        <h3 class="alert-heading price-header">Максимальные цены на лекарства в аптеке: </h3>
+                        <table class="table table-striped">
+                            <thead>
+                                <tr>
+                                    <th scope="col">Наименование</th>
+                                    <th scope="col">Дата приказа</th>
+                                    <th scope="col">Цена</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                {% for object in object_list %}
+                                    <tr>
+                                        <td>{{ object.torgName }}</td>
+                                        <td>{{ object.dateReg }}</td>
+                                        <th scope="row" class="price">{{ object.cena_apt }}</th>
+                                    </tr>
+                                {% endfor %}
+                            </tbody>
+                        </table>
+                    </div>
+                {% else %}
+                    <div class="alert alert-warning col-lg-8" role="alert">
+                        <h3>Данный препарат не найден в списке ЖНВЛС</h3>
+                    </div>
+                {% endif %}
+            {% endif %}
             </div>
         </div>
     </div>
